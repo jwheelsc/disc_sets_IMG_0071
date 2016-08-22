@@ -1,0 +1,32 @@
+to get the scales from the point clouds, I used attempt 3 with the following
+modelled and real worl points
+
+% here are the "real" camera coordinates from the GPS location
+rC = [[616924,6754159,1964]',[616970,6754182,1961]',[616859,6754132,1966]']
+len = rC(:,1)-rC(:,2)
+d1 = sqrt(len(1)^2+len(2)^2+len(3)^2)
+len = rC(:,1)-rC(:,3)
+d2 = sqrt(len(1)^2+len(2)^2+len(3)^2)
+len = rC(:,2)-rC(:,3)
+d3 = sqrt(len(1)^2+len(2)^2+len(3)^2)
+
+
+cC = [mean(p(1:2,:));mean(p(3:4,:));p(5,:)]'
+len = cC(:,1)-cC(:,2)
+dc1 = sqrt(len(1)^2+len(2)^2+len(3)^2)
+len = cC(:,1)-cC(:,3)
+dc2 = sqrt(len(1)^2+len(2)^2+len(3)^2)
+len = cC(:,2)-cC(:,3)
+dc3 = sqrt(len(1)^2+len(2)^2+len(3)^2)
+
+s1 = dc1/d1
+s2 = dc2/d2
+s3 = dc3/d3
+
+return 
+
+mC = [[-0.2238,0.4753,20.67]',[-0.2869,0.4266,20.69]']
+len = mC(:,1)-mC(:,2)
+dm1 = sqrt(len(1)^2+len(2)^2+len(3)^2)
+
+rl1 = dm1/mean([s1 s2 s3])
